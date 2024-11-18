@@ -9,9 +9,9 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('login')
   signIn(
-    @Body('username') username: string,
+    @Body('cellphone') cellphone: number,
     @Body('password') password: string,
   ): AuthResponseDto {
-    return this.authService.signIn(username, password);
+    return this.authService.signIn(cellphone, password);
   }
 }

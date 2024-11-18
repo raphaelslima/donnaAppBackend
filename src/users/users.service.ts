@@ -13,7 +13,7 @@ export class UsersService {
     this.users.push(newUser);
   }
 
-  findByUserName(username: string): UserDto | null {
-    return this.users.find((user) => user.username === username);
+  findByCellphone(cellphone: number): UserDto | null {
+    return this.users.find((user) => user.cellphone === cellphone);
   }
 }

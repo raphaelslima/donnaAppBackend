@@ -19,14 +19,14 @@ export class AuthService {
     );
   }
 
-  signIn(username: string, password: string): AuthResponseDto {
-    const foundUser = this.usersService.findByUserName(username);
+  signIn(cellphone: number, password: string): AuthResponseDto {
+    const foundUser = this.usersService.findByCellphone(cellphone);
 
     if (!foundUser || !bcryptCompareSync(password, foundUser.password)) {
       throw new UnauthorizedException();
     }
 
-    const payload = { sub: foundUser.id, username: foundUser.username };
+    const payload = { sub: foundUser.id, cellphone: foundUser.cellphone };
 
     const token = this.jwtService.sign(payload);
 
