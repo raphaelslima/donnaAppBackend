@@ -1,5 +1,6 @@
-export class UserDto {
-  id: string;
+import { Document } from 'mongoose';
+
+export class UserDto extends Document {
   firstname: string;
   lastname: string;
   dateOfBirth: string;
