@@ -6,8 +6,6 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-  private readonly users: UserDto[] = [];
-
   constructor(
     @InjectModel('User') private readonly userModel: Model<UserDto>,
   ) {}
@@ -24,6 +22,22 @@ export class UsersService {
 
   async getById(id: string) {
     return await this.userModel.findById(id).exec();
+  }
+
+  async findOne(cellphone: number, password: string) {
+    const user = await this.userModel
+      .findOne(
+        {
+          cellphone: cellphone,
+        },
+        { password: password },
+      )
+      .exec();
+
+    const id = user._id.toString();
+
+    const getUser = this.getById(id);
+    return getUser;
   }
 
   async update(id: string, user: UserDto) {
